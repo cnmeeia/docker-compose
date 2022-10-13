@@ -1,0 +1,31 @@
+name: do
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+        
+      - name: unzip
+        run:
+           apt install unzip -y
+           apt install wget -y
+           
+           
+      - name: download
+        run: |
+           
+           wget -O  "归档.zip" https://tmp-titan.vx-cdn.com/file-6347b2fe871dd-6347b3b93b1b1/%E5%BD%92%E6%A1%A3.zip
+           
+           unzip *.zip 
+           
+           
+      - name: git push
+        run: |        
+          git config --global user.email github@app2022.ml        
+          git config --global user.name cnmeeia        
+          git pull     
+          git add .         
+          git commit --allow-empty -m "push"
+          git push
